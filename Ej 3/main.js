@@ -15,9 +15,17 @@ function tiempoEntreFechas(fecha1, fecha2) {
     let año1 = Number(f1[2]);
     let año2 = Number(f2[2]);
 
-    let diasdiferencia = (año2 - año1) * 360 + (mes2 - mes1) * 30 + (dia2 - dia1);
+    if(mes1 === -1 || mes2 === -1){
+        throw new Error("El mes no existe");
+    }
+
+    if(dia1 < 1 || dia1 > 31 || dia2 < 1 || dia2 > 31){
+        throw new Error("El dia no existe");
+    }
+
+    let diasdiferencia = (año2 - año1) * 365 + (mes2 - mes1) * 30 + (dia2 - dia1);
 
     return diasdiferencia;
 }
 
-console.log(tiempoEntreFechas('Dec 1, 2023', 'Jab 1, 2024'));
+module.exports = {tiempoEntreFechas};
